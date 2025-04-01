@@ -8,6 +8,7 @@ const Controls = ({ timerActive, toggleTimer, resetTimer, switchTimerMode, vibeC
         onClick={toggleTimer}
         style={{ borderColor: vibeColor, color: vibeColor }}
       >
+        <span className="btn-icon">{timerActive ? '⏸️' : '▶️'}</span>
         {timerActive ? 'PAUSE' : 'START'}
       </button>
       
@@ -16,6 +17,7 @@ const Controls = ({ timerActive, toggleTimer, resetTimer, switchTimerMode, vibeC
         onClick={resetTimer}
         style={{ borderColor: vibeColor, color: vibeColor }}
       >
+        <span className="btn-icon">🔄</span>
         RESET
       </button>
       
@@ -24,6 +26,7 @@ const Controls = ({ timerActive, toggleTimer, resetTimer, switchTimerMode, vibeC
         onClick={switchTimerMode}
         style={{ borderColor: vibeColor, color: vibeColor }}
       >
+        <span className="btn-icon">⏭️</span>
         SKIP
       </button>
     </div>

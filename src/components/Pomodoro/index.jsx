@@ -17,6 +17,16 @@ const Pomodoro = ({ vibeGoal, vibeColor }) => {
   const [maxTime, setMaxTime] = useState(DEFAULT_WORK_TIME);
   const [sessionCount, setSessionCount] = useState(0);
   const timerRef = useRef(null);
+  const audioRef = useRef(null);
+  
+  // Initialize audio for notifications
+  useEffect(() => {
+    audioRef.current = new Audio("https://cdn.freesound.org/previews/414/414346_5121236-lq.mp3");
+    audioRef.current.volume = 0.3;
+    return () => {
+      audioRef.current = null;
+    };
+  }, []);
   
   // Function to start/pause the timer
   const toggleTimer = () => {
@@ -48,6 +58,11 @@ const Pomodoro = ({ vibeGoal, vibeColor }) => {
       const newSessionCount = sessionCount + 1;
       setSessionCount(newSessionCount);
       
+      // Play completion sound
+      if (audioRef.current) {
+        audioRef.current.play().catch(e => console.log("Could not play notification sound"));
+      }
+      
       // Check if we should have a long break
       if (newSessionCount % DEFAULT_SESSIONS_BEFORE_LONG_BREAK === 0) {
         setTimerMode('longBreak');
@@ -60,6 +75,11 @@ const Pomodoro = ({ vibeGoal, vibeColor }) => {
       }
     } else {
       // Completed a break, switching back to work
+      // Play completion sound
+      if (audioRef.current) {
+        audioRef.current.play().catch(e => console.log("Could not play notification sound"));
+      }
+      
       setTimerMode('work');
       setTimeRemaining(DEFAULT_WORK_TIME);
       setMaxTime(DEFAULT_WORK_TIME);
@@ -91,6 +111,9 @@ const Pomodoro = ({ vibeGoal, vibeColor }) => {
     };
   }, [timerActive]);
   
+  // Calculate remaining focus sessions before long break
+  const sessionsUntilLongBreak = DEFAULT_SESSIONS_BEFORE_LONG_BREAK - (sessionCount % DEFAULT_SESSIONS_BEFORE_LONG_BREAK);
+  
   return (
     <Window title="Pomodoro Vibe Timer">
       <div className="pomodoro-container">
@@ -117,6 +140,9 @@ const Pomodoro = ({ vibeGoal, vibeColor }) => {
         
         <div className="session-counter">
           <span>Sessions completed: {sessionCount}</span>
+          {timerMode === 'work' && sessionsUntilLongBreak > 0 && (
+            <span> | Long break in: {sessionsUntilLongBreak}</span>
+          )}
         </div>
       </div>
     </Window>
