@@ -2,7 +2,11 @@ import React from 'react';
 import Window from '../UI/Window';
 import AmbientButton from './AmbientButton';
 
-const Ambient = ({ ambientSounds, toggleAmbientSound, openAddModal }) => {
+const Ambient = ({ 
+  ambientSounds, 
+  toggleAmbientSound, 
+  openAddModal
+}) => {
   return (
     <Window title="Controls">
       <h3>Ambient Sounds</h3>

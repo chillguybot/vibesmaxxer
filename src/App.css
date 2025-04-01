@@ -120,7 +120,7 @@ body {
 
 .horizontal-layout .window {
   flex: 1;
-  min-width: 320px;
+  min-width: 340px; /* Changed from 320px */
   max-width: 450px;
   margin-bottom: 0;
   box-shadow: 0 10px 30px var(--shadow-color);

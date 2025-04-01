@@ -44,7 +44,10 @@ const VibeGoal = ({ vibeGoal, setVibeGoal, vibeColor, setVibeColor }) => {
         </form>
       ) : (
         <div className="vibe-display">
-          <span>Maxxing: <strong style={{ color: vibeColor }}>{vibeGoal}</strong></span>
+          <span>Maxxing: <strong style={{ 
+            color: vibeColor, 
+            textShadow: `0 0 8px ${vibeColor}` 
+          }}>{vibeGoal}</strong></span>
           <button 
             onClick={() => setEditingVibe(true)} 
             className="vibe-edit-btn"
