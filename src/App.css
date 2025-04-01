@@ -43,6 +43,74 @@ body {
   background-size: 20px 20px;
 }
 
+/* Color Palette Styling */
+.color-picker-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.vibe-color-display {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.vibe-color-display:hover {
+  transform: scale(1.05);
+}
+
+.color-palette {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  background-color: var(--window-bg);
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.color-option:hover {
+  transform: scale(1.15);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.custom-color-picker {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+}
+
+.custom-color-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.custom-color-picker::-webkit-color-swatch {
+  border: none;
+}
+
 /* Layout Containers */
 .lofi-player {
   display: flex;
@@ -98,7 +166,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 10px 30px var(--shadow-color);
   overflow: visible;
-  border: 3px solid var(--accent-color);
+  border: 3px solid var(--vibe-color, var(--accent-color));
   image-rendering: pixelated;
   margin: 5px;
   transition: border-color 0.5s ease;
@@ -128,7 +196,7 @@ body {
 }
 
 .window-header {
-  background-color: var(--accent-color);
+  background-color: var(--vibe-color, var(--accent-color));
   padding: 10px 15px;
   display: flex;
   justify-content: space-between;
@@ -549,10 +617,9 @@ body {
   appearance: none;
   width: 16px;
   height: 16px;
-  background-color: var(--accent-color);
+  background-color: var(--vibe-color, var(--accent-color));
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 0.5s ease;
 }
 
 /* Pomodoro Timer */
@@ -1199,7 +1266,17 @@ body {
   }
 }
 
+/* For mobile responsiveness */
+
 @media (max-width: 768px) {
+  .color-palette {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 30%;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   .horizontal-layout {
     flex-direction: column;
     align-items: center;

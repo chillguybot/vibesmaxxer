@@ -183,44 +183,43 @@ function App() {
     ));
   };
   
-  // Modal functions
-  const openAddModal = (type) => {
-    setModalType(type);
-    setNewItemName('');
-    setNewItemUrl('');
-    setShowAddModal(true);
-  };
+// Modal functions
+const openAddModal = (type) => {
+  setModalType(type);
+  setNewItemName('');
+  setNewItemUrl('');
+  setShowAddModal(true);
+};
+
+const closeAddModal = () => {
+  setShowAddModal(false);
+};
+
+const handleAddItem = () => {
+  if (!newItemName || !newItemUrl) {
+    alert("Please fill in all fields");
+    return;
+  }
   
-  const closeAddModal = () => {
-    setShowAddModal(false);
-  };
+  if (modalType === 'station') {
+    const newStation = {
+      id: `custom-${Date.now()}`,
+      name: newItemName,
+      url: newItemUrl
+    };
+    setStations([...stations, newStation]);
+  } else {
+    const newSound = {
+      id: `custom-${Date.now()}`,
+      name: newItemName,
+      url: newItemUrl,
+      active: false
+    };
+    setAmbientSounds([...ambientSounds, newSound]);
+  }
   
-  const handleAddItem = () => {
-    if (!newItemName || !newItemUrl) {
-      alert("Please fill in all fields");
-      return;
-    }
-    
-    if (modalType === 'station') {
-      const newStation = {
-        id: `custom-${Date.now()}`,
-        name: newItemName,
-        url: newItemUrl,
-        color: newItemColor
-      };
-      setStations([...stations, newStation]);
-    } else {
-      const newSound = {
-        id: `custom-${Date.now()}`,
-        name: newItemName,
-        url: newItemUrl,
-        active: false
-      };
-      setAmbientSounds([...ambientSounds, newSound]);
-    }
-    
-    closeAddModal();
-  };
+  closeAddModal();
+};
   
   const removeItem = (type, id) => {
     if (confirm("Are you sure you want to remove this item?")) {
@@ -256,53 +255,52 @@ function App() {
     }
   };
 
-  return (
-    <div className="lofi-player" style={{ 
-      '--accent-color': stations[currentStation].color,
-      '--vibe-color': vibeColor 
-    }}>
-      <h1 className="app-title">Lofi Study Zone</h1>
-      
-      {/* Vibe Goal Component */}
-      <VibeGoal 
-        vibeGoal={vibeGoal} 
-        setVibeGoal={setVibeGoal}
-        vibeColor={vibeColor}
-        setVibeColor={setVibeColor}
-      />
-      
-      {/* All windows in a single horizontal row with extra wrapper for spacing */}
-      <div className="horizontal-layout-wrapper">
-        <div className="horizontal-layout">
-          {/* Player component */}
-          <Player 
-            station={stations[currentStation]}
-            isPlaying={isPlaying}
-            togglePlay={togglePlay}
-            changeStation={changeStation}
-            volume={volume}
-            setVolume={setVolume}
-            time={time}
-            ambientSounds={ambientSounds}
-            vibeGoal={vibeGoal}
-            vibeColor={vibeColor}
-          />
-          
-          {/* Pomodoro Timer */}
-          <Pomodoro 
-            vibeGoal={vibeGoal}
-            vibeColor={vibeColor}
-          />
-          
-          {/* Control panel */}
-          <Ambient 
-            ambientSounds={ambientSounds}
-            toggleAmbientSound={toggleAmbientSound}
-            openAddModal={openAddModal}
-            vibeColor={vibeColor}
-          />
-        </div>
+return (
+  <div className="lofi-player" style={{ 
+    '--vibe-color': vibeColor 
+  }}>
+    <h1 className="app-title">Lofi Study Zone</h1>
+    
+    {/* Vibe Goal Component */}
+    <VibeGoal 
+      vibeGoal={vibeGoal} 
+      setVibeGoal={setVibeGoal}
+      vibeColor={vibeColor}
+      setVibeColor={setVibeColor}
+    />
+    
+    {/* All windows in a single horizontal row with extra wrapper for spacing */}
+    <div className="horizontal-layout-wrapper">
+      <div className="horizontal-layout">
+        {/* Player component */}
+        <Player 
+          station={stations[currentStation]}
+          isPlaying={isPlaying}
+          togglePlay={togglePlay}
+          changeStation={changeStation}
+          volume={volume}
+          setVolume={setVolume}
+          time={time}
+          ambientSounds={ambientSounds}
+          vibeGoal={vibeGoal}
+          vibeColor={vibeColor}
+        />
+        
+        {/* Pomodoro Timer */}
+        <Pomodoro 
+          vibeGoal={vibeGoal}
+          vibeColor={vibeColor}
+        />
+        
+        {/* Control panel */}
+        <Ambient 
+          ambientSounds={ambientSounds}
+          toggleAmbientSound={toggleAmbientSound}
+          openAddModal={openAddModal}
+          vibeColor={vibeColor}
+        />
       </div>
+    </div>
       
       {/* Main audio element for radio */}
       <audio ref={audioRef} />

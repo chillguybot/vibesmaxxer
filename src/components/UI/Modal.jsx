@@ -7,8 +7,6 @@ const Modal = ({
   setNewItemName, 
   newItemUrl, 
   setNewItemUrl, 
-  newItemColor, 
-  setNewItemColor, 
   handleAddItem, 
   stations, 
   ambientSounds, 
@@ -26,7 +24,7 @@ const Modal = ({
             <ul className="manage-list">
               {stations.map(station => (
                 <li key={station.id} className="manage-item">
-                  <span style={{ color: station.color }}>{station.name}</span>
+                  <span>{station.name}</span>
                   <button 
                     className="remove-btn"
                     onClick={() => removeItem('station', station.id)}
@@ -85,17 +83,6 @@ const Modal = ({
                 required
               />
             </div>
-            
-            {type === 'station' && (
-              <div className="form-group">
-                <label>Color:</label>
-                <input 
-                  type="color" 
-                  value={newItemColor}
-                  onChange={(e) => setNewItemColor(e.target.value)}
-                />
-              </div>
-            )}
             
             <div className="modal-actions">
               <button type="submit" className="submit-btn">Add</button>

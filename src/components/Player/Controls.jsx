@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume }) => {
+const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume, vibeColor }) => {
   return (
     <div className="controls-container">
       <div className="controls">
@@ -8,7 +8,11 @@ const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume }) =
           <div className="pixel-icon prev"></div>
         </button>
         
-        <button className="control-btn play-btn" onClick={togglePlay}>
+        <button 
+          className="control-btn play-btn" 
+          onClick={togglePlay}
+          style={{ backgroundColor: vibeColor }}
+        >
           {isPlaying ? (
             <div className="pixel-icon pause"></div>
           ) : (
@@ -31,6 +35,7 @@ const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume }) =
           value={volume} 
           onChange={(e) => setVolume(parseFloat(e.target.value))}
           className="volume-slider"
+          style={{ "--slider-color": vibeColor }}
         />
       </div>
     </div>

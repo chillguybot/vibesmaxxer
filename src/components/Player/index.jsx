@@ -12,13 +12,14 @@ const Player = ({
   volume, 
   setVolume, 
   time,
-  ambientSounds = []
+  ambientSounds = [],
+  vibeColor
 }) => {
   return (
     <Window title="Chill Lofi Radio">
       <PixelScene time={time} ambientSounds={ambientSounds} />
       
-      <StationInfo station={station} />
+      <StationInfo station={station} vibeColor={vibeColor} />
       
       <Controls 
         isPlaying={isPlaying}
@@ -26,6 +27,7 @@ const Player = ({
         changeStation={changeStation}
         volume={volume}
         setVolume={setVolume}
+        vibeColor={vibeColor}
       />
     </Window>
   );

@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/localStorage';
+import { COLOR_PALETTE } from '../../utils/constants';
 
 const VibeGoal = ({ vibeGoal, setVibeGoal, vibeColor, setVibeColor }) => {
   const [editingVibe, setEditingVibe] = useState(!vibeGoal);
+  const [showColorPalette, setShowColorPalette] = useState(false);
   
   // Handle vibe input
   const handleVibeSubmit = (e) => {
     e.preventDefault();
     setEditingVibe(false);
+    setShowColorPalette(false);
+  };
+  
+  // Handle color selection
+  const handleColorSelect = (color) => {
+    setVibeColor(color);
+    setShowColorPalette(false);
   };
   
   return (
@@ -26,13 +35,33 @@ const VibeGoal = ({ vibeGoal, setVibeGoal, vibeColor, setVibeColor }) => {
               className="vibe-input"
               style={{ borderColor: vibeColor }}
             />
-            <input
-              type="color"
-              value={vibeColor}
-              onChange={(e) => setVibeColor(e.target.value)}
-              className="vibe-color-picker"
-              title="Choose vibe color"
-            />
+            <div className="color-picker-container">
+              <div 
+                className="vibe-color-display"
+                style={{ backgroundColor: vibeColor }}
+                onClick={() => setShowColorPalette(!showColorPalette)}
+              ></div>
+              
+              {showColorPalette && (
+                <div className="color-palette">
+                  {COLOR_PALETTE.map(color => (
+                    <div 
+                      key={color}
+                      className="color-option"
+                      style={{ backgroundColor: color }}
+                      onClick={() => handleColorSelect(color)}
+                    ></div>
+                  ))}
+                  <input
+                    type="color"
+                    value={vibeColor}
+                    onChange={(e) => setVibeColor(e.target.value)}
+                    className="custom-color-picker"
+                    title="Choose custom color"
+                  />
+                </div>
+              )}
+            </div>
             <button 
               type="submit" 
               className="vibe-submit-btn" 

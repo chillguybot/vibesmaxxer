@@ -1,22 +1,19 @@
-// Default radio stations
+// Default radio stations - removed color property
 export const DEFAULT_RADIO_STATIONS = [
   {
     id: 'lofi-girl',
     name: "Lofi Girl",
-    url: "https://play.streamafrica.net/lofiradio",
-    color: "#e9c46a"
+    url: "https://play.streamafrica.net/lofiradio"
   },
   {
     id: 'chillhop',
     name: "Chillhop",
-    url: "http://stream.zeno.fm/0r0xa792kwzuv",
-    color: "#2a9d8f"
+    url: "http://stream.zeno.fm/0r0xa792kwzuv"
   },
   {
     id: 'box-lofi',
     name: "Box Lofi",
-    url: "http://stream.zeno.fm/f3wvbbqmdg8uv",
-    color: "#e76f51"
+    url: "http://stream.zeno.fm/f3wvbbqmdg8uv"
   }
 ];
 
@@ -34,6 +31,18 @@ export const DEFAULT_AMBIENT_SOUNDS = [
     url: "https://cdn.freesound.org/previews/323/323683_5260872-lq.mp3",
     active: false
   }
+];
+
+// Color palette for vibe selection
+export const COLOR_PALETTE = [
+  "#e9c46a", // Yellow (original accent)
+  "#2a9d8f", // Teal
+  "#e76f51", // Orange
+  "#f4a261", // Light Orange
+  "#ff6b6b", // Red
+  "#5aa9e6", // Light Blue
+  "#7269ef", // Purple
+  "#7fb069"  // Green
 ];
 
 // Default pomodoro settings
