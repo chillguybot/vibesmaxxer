@@ -11,7 +11,8 @@ const Modal = ({
   stations, 
   ambientSounds, 
   removeItem, 
-  resetToDefaults 
+  resetToDefaults,
+  vibeColor
 }) => {
   return (
     <div className="modal-overlay">
@@ -85,15 +86,34 @@ const Modal = ({
             </div>
             
             <div className="modal-actions">
-              <button type="submit" className="submit-btn">Add</button>
-              <button type="button" className="cancel-btn" onClick={closeModal}>Cancel</button>
+              <button 
+                type="submit" 
+                className="submit-btn"
+                style={{ backgroundColor: vibeColor }}
+              >
+                Add
+              </button>
+              <button 
+                type="button" 
+                className="cancel-btn" 
+                onClick={closeModal}
+                style={{ borderColor: vibeColor, color: vibeColor }}
+              >
+                Cancel
+              </button>
             </div>
           </form>
         )}
         
         {type === 'manage' && (
           <div className="modal-actions">
-            <button className="cancel-btn" onClick={closeModal}>Close</button>
+            <button 
+              className="cancel-btn" 
+              onClick={closeModal}
+              style={{ borderColor: vibeColor, color: vibeColor }}
+            >
+              Close
+            </button>
           </div>
         )}
       </div>

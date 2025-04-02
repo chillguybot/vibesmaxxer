@@ -4,14 +4,15 @@ const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume, vib
   return (
     <div className="controls-container">
       <div className="controls">
-        <button className="control-btn" onClick={() => changeStation(-1)}>
+        <button className="control-btn" onClick={() => changeStation(-1)}
+        >
           <div className="pixel-icon prev"></div>
         </button>
         
         <button 
           className="control-btn play-btn" 
           onClick={togglePlay}
-          style={{ backgroundColor: vibeColor }}
+          style={{ backgroundColor: vibeColor, borderColor: vibeColor }}
         >
           {isPlaying ? (
             <div className="pixel-icon pause"></div>
@@ -20,7 +21,9 @@ const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume, vib
           )}
         </button>
         
-        <button className="control-btn" onClick={() => changeStation(1)}>
+        <button className="control-btn"
+                onClick={() => changeStation(1)}
+        >
           <div className="pixel-icon next"></div>
         </button>
       </div>

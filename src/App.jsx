@@ -324,13 +324,12 @@ return (
           setNewItemName={setNewItemName}
           newItemUrl={newItemUrl}
           setNewItemUrl={setNewItemUrl}
-          newItemColor={newItemColor}
-          setNewItemColor={setNewItemColor}
           handleAddItem={handleAddItem}
           stations={stations}
           ambientSounds={ambientSounds}
           removeItem={removeItem}
           resetToDefaults={resetToDefaults}
+          vibeColor={vibeColor}
         />
       )}
       

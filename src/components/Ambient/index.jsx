@@ -5,7 +5,8 @@ import AmbientButton from './AmbientButton';
 const Ambient = ({ 
   ambientSounds, 
   toggleAmbientSound, 
-  openAddModal
+  openAddModal,
+  vibeColor
 }) => {
   return (
     <Window title="Controls">
@@ -16,12 +17,14 @@ const Ambient = ({
             key={sound.id}
             sound={sound}
             toggleAmbientSound={toggleAmbientSound}
+            vibeColor={vibeColor}
           />
         ))}
         <button 
           className="add-btn" 
           onClick={() => openAddModal('sound')}
           title="Add new ambient sound"
+          style={{ backgroundColor: vibeColor, borderColor: vibeColor }}
         >
           +
         </button>
@@ -31,10 +34,18 @@ const Ambient = ({
       
       <h3>Manage</h3>
       <div className="manage-controls">
-        <button className="manage-btn" onClick={() => openAddModal('station')}>
+        <button 
+          className="manage-btn" 
+          onClick={() => openAddModal('station')}
+          style={{ borderColor: vibeColor, color: vibeColor }}
+        >
           Add Station
         </button>
-        <button className="manage-btn" onClick={() => openAddModal('manage')}>
+        <button 
+          className="manage-btn" 
+          onClick={() => openAddModal('manage')}
+          style={{ borderColor: vibeColor, color: vibeColor }}
+        >
           Manage Library
         </button>
       </div>
