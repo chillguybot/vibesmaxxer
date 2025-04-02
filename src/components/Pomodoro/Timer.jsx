@@ -1,22 +1,14 @@
 import React from 'react';
-import { formatTimerDisplay, calculateProgress } from '../../utils/timeUtils';
+import { formatTimerDisplay, calculateProgress } from '../../utils/timeUtils.js';
 
 const Timer = ({ timerMode, timeRemaining, maxTime, vibeColor }) => {
-  // Determine timer progress bar color based on mode and vibe color
+  // Calculate percentage for display purposes
+  const progressPercentage = calculateProgress(maxTime, timeRemaining);
+
+  // Determine timer progress bar color based on mode
   const getProgressBarColor = () => {
     if (timerMode === 'work') {
-      return vibeColor || 'var(--accent-color)';
-    } else if (timerMode === 'break') {
-      return 'var(--blue)';
-    } else {
-      return 'var(--purple)';
-    }
-  };
-
-  // Determine mode label background color
-  const getModeColor = () => {
-    if (timerMode === 'work') {
-      return vibeColor || 'var(--accent-color)';
+      return vibeColor;
     } else if (timerMode === 'break') {
       return 'var(--blue)';
     } else {
@@ -56,17 +48,11 @@ const Timer = ({ timerMode, timeRemaining, maxTime, vibeColor }) => {
     }
   };
 
-  // Calculate percentage for display purposes
-  const progressPercentage = calculateProgress(maxTime, timeRemaining);
-
   return (
     <div className="timer-display">
       <div className="timer-header">
         {renderModeIcon()}
-        <span 
-          className={`mode-label ${timerMode}`}
-          style={{ backgroundColor: getModeColor() }}
-        >
+        <span className={`mode-label ${timerMode}`}>
           {timerMode === 'work' ? 'FOCUS' : timerMode === 'break' ? 'SHORT BREAK' : 'LONG BREAK'}
         </span>
       </div>
@@ -92,7 +78,7 @@ const Timer = ({ timerMode, timeRemaining, maxTime, vibeColor }) => {
             key={index} 
             className={`timer-track ${index < progressPercentage/10 ? 'active' : ''}`}
             style={{ 
-              backgroundColor: index < progressPercentage/10 ? getProgressBarColor() : 'rgba(255, 255, 255, 0.1)',
+              backgroundColor: index < progressPercentage/10 ? getProgressBarColor() : undefined,
             }}
           ></div>
         ))}

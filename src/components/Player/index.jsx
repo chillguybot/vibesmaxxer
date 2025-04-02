@@ -1,8 +1,8 @@
 import React from 'react';
-import Window from '../UI/Window';
-import PixelScene from './PixelScene';
-import StationInfo from './StationInfo';
-import Controls from './Controls';
+import Window from '../UI/Window.jsx';
+import PixelScene from './PixelScene.jsx';
+import StationInfo from './StationInfo.jsx';
+import Controls from './Controls.jsx';
 
 const Player = ({ 
   station, 

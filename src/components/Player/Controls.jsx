@@ -1,18 +1,16 @@
 import React from 'react';
 
-const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume, vibeColor }) => {
+const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume }) => {
   return (
     <div className="controls-container">
       <div className="controls">
-        <button className="control-btn" onClick={() => changeStation(-1)}
-        >
+        <button className="btn btn-icon" onClick={() => changeStation(-1)}>
           <div className="pixel-icon prev"></div>
         </button>
         
         <button 
-          className="control-btn play-btn" 
+          className="btn btn-icon primary" 
           onClick={togglePlay}
-          style={{ backgroundColor: vibeColor, borderColor: vibeColor }}
         >
           {isPlaying ? (
             <div className="pixel-icon pause"></div>
@@ -21,9 +19,7 @@ const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume, vib
           )}
         </button>
         
-        <button className="control-btn"
-                onClick={() => changeStation(1)}
-        >
+        <button className="btn btn-icon" onClick={() => changeStation(1)}>
           <div className="pixel-icon next"></div>
         </button>
       </div>
@@ -38,7 +34,6 @@ const Controls = ({ isPlaying, togglePlay, changeStation, volume, setVolume, vib
           value={volume} 
           onChange={(e) => setVolume(parseFloat(e.target.value))}
           className="volume-slider"
-          style={{ "--slider-color": vibeColor }}
         />
       </div>
     </div>

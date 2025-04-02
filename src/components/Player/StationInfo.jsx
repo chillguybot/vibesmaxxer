@@ -1,16 +1,10 @@
 import React from 'react';
-import { isColorDark } from '../../utils/constants.js';
 
-const StationInfo = ({ station, vibeColor }) => {
+const StationInfo = ({ station }) => {
   return (
     <div className="station-info">
       <h2>Now Playing</h2>
-      <h3 style={{ 
-        color: vibeColor,
-        textShadow: `0 0 8px ${vibeColor}`
-      }}>
-        {station.name}
-      </h3>
+      <h3>{station.name}</h3>
     </div>
   );
 };

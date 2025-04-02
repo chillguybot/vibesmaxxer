@@ -1,32 +1,29 @@
 import React from 'react';
 
-const Controls = ({ timerActive, toggleTimer, resetTimer, switchTimerMode, vibeColor }) => {
+const Controls = ({ timerActive, toggleTimer, resetTimer, switchTimerMode }) => {
   return (
     <div className="pomodoro-controls">
       <button 
-        className="pomodoro-btn" 
+        className="btn btn-primary"
         onClick={toggleTimer}
-        style={{ borderColor: vibeColor, color: vibeColor }}
       >
-        <span className="btn-icon">{timerActive ? '⏸️' : '▶️'}</span>
+        <span className="btn-icon-left">{timerActive ? '⏸️' : '▶️'}</span>
         {timerActive ? 'PAUSE' : 'START'}
       </button>
       
       <button 
-        className="pomodoro-btn" 
+        className="btn btn-primary"
         onClick={resetTimer}
-        style={{ borderColor: vibeColor, color: vibeColor }}
       >
-        <span className="btn-icon">🔄</span>
+        <span className="btn-icon-left">🔄</span>
         RESET
       </button>
       
       <button 
-        className="pomodoro-btn" 
+        className="btn btn-primary"
         onClick={switchTimerMode}
-        style={{ borderColor: vibeColor, color: vibeColor }}
       >
-        <span className="btn-icon">⏭️</span>
+        <span className="btn-icon-left">⏭️</span>
         SKIP
       </button>
     </div>

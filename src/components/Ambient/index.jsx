@@ -1,12 +1,11 @@
 import React from 'react';
-import Window from '../UI/Window';
-import AmbientButton from './AmbientButton';
+import Window from '../UI/Window.jsx';
+import AmbientButton from './AmbientButton.jsx';
 
 const Ambient = ({ 
   ambientSounds, 
   toggleAmbientSound, 
-  openAddModal,
-  vibeColor
+  openAddModal
 }) => {
   return (
     <Window title="Controls">
@@ -17,34 +16,30 @@ const Ambient = ({
             key={sound.id}
             sound={sound}
             toggleAmbientSound={toggleAmbientSound}
-            vibeColor={vibeColor}
           />
         ))}
         <button 
-          className="add-btn" 
+          className="btn btn-primary filled" 
           onClick={() => openAddModal('sound')}
           title="Add new ambient sound"
-          style={{ backgroundColor: vibeColor, borderColor: vibeColor }}
+          style={{fontSize: '24px', padding: '5px 10px'}}
         >
           +
         </button>
-        {/* Add an invisible element to ensure proper wrapping when odd number of buttons */}
         <div className="flex-spacer"></div>
       </div>
       
       <h3>Manage</h3>
       <div className="manage-controls">
         <button 
-          className="manage-btn" 
+          className="btn btn-secondary" 
           onClick={() => openAddModal('station')}
-          style={{ borderColor: vibeColor, color: vibeColor }}
         >
           Add Station
         </button>
         <button 
-          className="manage-btn" 
+          className="btn btn-secondary" 
           onClick={() => openAddModal('manage')}
-          style={{ borderColor: vibeColor, color: vibeColor }}
         >
           Manage Library
         </button>

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { saveToLocalStorage, loadFromLocalStorage } from '../../utils/localStorage';
-import { COLOR_PALETTE } from '../../utils/constants';
+import React, { useState } from 'react';
+import { COLOR_PALETTE } from '../../utils/constants.js';
 
 const VibeGoal = ({ vibeGoal, setVibeGoal, vibeColor, setVibeColor }) => {
   const [editingVibe, setEditingVibe] = useState(!vibeGoal);
@@ -20,11 +19,11 @@ const VibeGoal = ({ vibeGoal, setVibeGoal, vibeColor, setVibeColor }) => {
   };
   
   return (
-    <div className="vibe-goal-container" style={{ borderColor: vibeColor }}>
-      <h2 className="vibe-title" style={{ color: vibeColor }}>Today's Vibe</h2>
+    <div className="vibe-goal-container">
+      <h2 className="vibe-title">Today's Vibe</h2>
       {editingVibe ? (
         <form onSubmit={handleVibeSubmit} className="vibe-form">
-          <label htmlFor="vibe-input" style={{ color: vibeColor }}>What vibe will you be maxxing today?</label>
+          <label htmlFor="vibe-input">What vibe will you be maxxing today?</label>
           <div className="vibe-input-group">
             <input
               id="vibe-input"
@@ -33,7 +32,6 @@ const VibeGoal = ({ vibeGoal, setVibeGoal, vibeColor, setVibeColor }) => {
               onChange={(e) => setVibeGoal(e.target.value)}
               placeholder="Enter your vibe..."
               className="vibe-input"
-              style={{ borderColor: vibeColor }}
             />
             <div className="color-picker-container">
               <div 
@@ -64,8 +62,7 @@ const VibeGoal = ({ vibeGoal, setVibeGoal, vibeColor, setVibeColor }) => {
             </div>
             <button 
               type="submit" 
-              className="vibe-submit-btn" 
-              style={{ backgroundColor: vibeColor, color: '#181b30' }}
+              className="btn btn-primary filled set-vibe-btn" 
             >
               Set Vibe
             </button>
@@ -73,14 +70,10 @@ const VibeGoal = ({ vibeGoal, setVibeGoal, vibeColor, setVibeColor }) => {
         </form>
       ) : (
         <div className="vibe-display">
-          <span>Maxxing: <strong style={{ 
-            color: vibeColor, 
-            textShadow: `0 0 8px ${vibeColor}` 
-          }}>{vibeGoal}</strong></span>
+          <span>Maxxing: <strong>{vibeGoal}</strong></span>
           <button 
             onClick={() => setEditingVibe(true)} 
-            className="vibe-edit-btn"
-            style={{ borderColor: vibeColor, color: vibeColor }}
+            className="btn btn-secondary"
           >
             Edit
           </button>

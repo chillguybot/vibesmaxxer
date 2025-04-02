@@ -11,8 +11,7 @@ const Modal = ({
   stations, 
   ambientSounds, 
   removeItem, 
-  resetToDefaults,
-  vibeColor
+  resetToDefaults
 }) => {
   return (
     <div className="modal-overlay">
@@ -35,7 +34,10 @@ const Modal = ({
                 </li>
               ))}
               <li>
-                <button className="reset-btn" onClick={() => resetToDefaults('station')}>
+                <button 
+                  className="btn btn-danger" 
+                  onClick={() => resetToDefaults('station')}
+                >
                   Reset to Defaults
                 </button>
               </li>
@@ -55,7 +57,10 @@ const Modal = ({
                 </li>
               ))}
               <li>
-                <button className="reset-btn" onClick={() => resetToDefaults('sound')}>
+                <button 
+                  className="btn btn-danger" 
+                  onClick={() => resetToDefaults('sound')}
+                >
                   Reset to Defaults
                 </button>
               </li>
@@ -88,16 +93,14 @@ const Modal = ({
             <div className="modal-actions">
               <button 
                 type="submit" 
-                className="submit-btn"
-                style={{ backgroundColor: vibeColor }}
+                className="btn btn-primary filled"
               >
                 Add
               </button>
               <button 
                 type="button" 
-                className="cancel-btn" 
+                className="btn btn-secondary" 
                 onClick={closeModal}
-                style={{ borderColor: vibeColor, color: vibeColor }}
               >
                 Cancel
               </button>
@@ -108,9 +111,8 @@ const Modal = ({
         {type === 'manage' && (
           <div className="modal-actions">
             <button 
-              className="cancel-btn" 
+              className="btn btn-secondary" 
               onClick={closeModal}
-              style={{ borderColor: vibeColor, color: vibeColor }}
             >
               Close
             </button>

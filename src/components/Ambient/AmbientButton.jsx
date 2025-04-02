@@ -1,14 +1,10 @@
 import React from 'react';
 
-const AmbientButton = ({ sound, toggleAmbientSound, vibeColor }) => {
+const AmbientButton = ({ sound, toggleAmbientSound }) => {
   return (
     <button 
-      className={`ambient-btn ${sound.active ? 'active' : ''}`} 
+      className={`btn btn-secondary ${sound.active ? 'active' : ''}`} 
       onClick={() => toggleAmbientSound(sound.id)}
-      style={{ 
-        borderColor: vibeColor,
-        ...(sound.active && { backgroundColor: vibeColor, color: '#181b30' })
-      }}
     >
       {sound.name}
     </button>
